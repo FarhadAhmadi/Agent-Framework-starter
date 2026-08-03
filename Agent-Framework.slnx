@@ -1,5 +1,0 @@
-<Solution>
-  <Project Path="WebAPI/src/WebAPI.AspireHost/WebAPI.AspireHost.csproj" />
-  <Project Path="WebAPI/src/WebAPI.ServiceDefaults/WebAPI.ServiceDefaults.csproj" />
-  <Project Path="WebAPI/src/WebAPI.Web/WebAPI.Web.csproj" />
-</Solution>
