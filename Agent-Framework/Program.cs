@@ -1,15 +1,20 @@
-﻿using Microsoft.Agents.AI;
+﻿// Program.cs
+using Agent_Framework;
 using Microsoft.Extensions.AI;
+using Microsoft.Extensions.DependencyInjection;
 using OllamaSharp;
-using System;
 
-OllamaApiClient ollama = new OllamaApiClient(new OllamaApiClient.Configuration
-{
-    Uri = new Uri("http://localhost:11434"),
-    Model = "qwen2.5:3b",
-});
+var services = new ServiceCollection();
 
-AIAgent agent = ollama.AsAIAgent(
-    instructions: "You are a helpful assistant running locally via Ollama.");
+// Register Ollama as the IChatClient implementation
+services.AddScoped<IChatClient>(_ =>
+    new OllamaApiClient(new Uri("http://localhost:11434"), "qwen2.5:3b"));
 
-Console.WriteLine(await agent.RunAsync("What is the largest city in France?"));
+// Register the AI service abstraction
+services.AddScoped<IAIService, OllamaAgentService>();
+
+var provider = services.BuildServiceProvider();
+
+var ai = provider.GetRequiredService<IAIService>();
+var result = await ai.GetResponseAsync("What is the largest city in France?");
+Console.WriteLine(result);

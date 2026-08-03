@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<NsDepCopConfig>
+    <Allowed From="*" To="*" />
+
+    <Disallowed From="WebAPI.Web.Domain.*"
+				To="WebAPI.Web.Infrastructure.*" />
+    
+    <Disallowed From="WebAPI.Web.CartFeatures.*"
+				To="WebAPI.Web.Infrastructure.*" />
+    
+    <Disallowed From="WebAPI.Web.ProductFeatures.*"
+				To="WebAPI.Web.Infrastructure.*" />
+    
+    <Disallowed From="WebAPI.Web.Domain.OrderAggregate.*"
+				To="WebAPI.Web.Domain.CartAggregate.*" />
+
+    <AnalyzerConfig>
+        <IssueKind Name="IllegalDependency" Severity="Error" />
+    </AnalyzerConfig>
+</NsDepCopConfig>
